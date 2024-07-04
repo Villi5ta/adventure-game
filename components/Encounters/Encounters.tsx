@@ -1,19 +1,15 @@
 /* eslint-disable react/prop-types */
 import React, { useState } from "react";
-import styles from "./Encounters.module.css";
-
-type OptionType = {
-  text: string;
-  healthChange: number;
-  resultMessage: string;
-  upgradePointsReward: number;
-  moneyReward: number;
-};
-
-type EncounterType = {
-  question: string;
-  options: OptionType[];
-};
+import Encounter1 from "../../EncountersA1/Encounter1";
+import Encounter2 from "../../EncountersA1/Encounter2";
+import Encounter3 from "../../EncountersA1/Encounter3";
+import Encounter4 from "../../EncountersA1/Encounter4";
+import Encounter5 from "../../EncountersA1/Encounter5";
+import Encounter6 from "../../EncountersA1/Encounter6";
+// import Encounter7 from "../../EncountersA1/Encounter7";
+// import Encounter8 from "../../EncountersA1/Encounter8";
+// import Encounter9 from "../../EncountersA1/Encounter9";
+// import Encounter10 from "../../EncountersA1/Encounter10";
 
 const Encounters = ({
   characterHealth,
@@ -24,21 +20,20 @@ const Encounters = ({
   setUpgradePoints,
   setResultMessage,
 }) => {
-  const [currentEncounter, setCurrentEncounter] = useState(0);
+  const [currentEncounterId, setCurrentEncounterId] = useState(1);
   const [characterState, setCharacterState] = useState(true);
 
   const optionClick = (
     healthChange,
     resultMessage,
     upgradePointsReward,
-    moneyReward
+    moneyReward,
+    nextEncounterId
   ) => {
     setResultMessage(resultMessage);
 
     const updatedHealth = characterHealth + healthChange;
     setCharacterHealth(updatedHealth);
-
-    console.log(healthChange);
 
     const updateCharacterMoney = characterMoney + moneyReward;
     setCharacterMoney(updateCharacterMoney);
@@ -49,126 +44,58 @@ const Encounters = ({
     if (updatedHealth <= 0) {
       setCharacterState(false);
     } else {
-      setCurrentEncounter((prev) => prev + 1);
+      if (nextEncounterId !== undefined) {
+        setCurrentEncounterId(nextEncounterId);
+      } else {
+        setCurrentEncounterId((prev) => prev + 1);
+      }
     }
   };
-
-  const encounters: EncounterType[] = [
-    {
-      question:
-        "You're at the begin of your journey. Before setting off, you should decide if you'd rather work on your skills or equipment.",
-      options: [
-        {
-          text: "You decide to freshen up your combat moves (+2HP)",
-          healthChange: +2,
-          resultMessage:
-            "After wining a sparring match against a tree, you feel ready for whats ahead.",
-          upgradePointsReward: 1,
-          moneyReward: 0,
-        },
-        {
-          text: "Quality equipment is key, no farmer can do his job with broken plow (+2UP)",
-          healthChange: 0,
-          resultMessage:
-            "After looking through your equipment, you discover some weak points. You fix them.",
-          upgradePointsReward: 2,
-          moneyReward: 0,
-        },
-      ],
-    },
-    {
-      question:
-        "As is usual in Normandia, the second you begin traveling somewhere, a group of bandits come after you. Do you engage or bribe them?",
-      options: [
-        {
-          text: "FIGHT! They who do they think they are?",
-          healthChange: -4,
-          resultMessage:
-            "After a vicious fight, the bandits lay dead. You scour their bodies and find some money. Probably some other poor travelers.",
-          upgradePointsReward: 2,
-          moneyReward: 2,
-        },
-        {
-          text: "Pay them",
-          healthChange: 0,
-          resultMessage:
-            "You give them a part of hard earned money. They move on.",
-          upgradePointsReward: -2,
-          moneyReward: -2,
-        },
-      ],
-    },
-    {
-      question: "3 Option one bad",
-      options: [
-        {
-          text: "Option one",
-          healthChange: -1,
-          resultMessage: "eeeeeeeeeeee",
-          upgradePointsReward: 1,
-          moneyReward: 0,
-        },
-        {
-          text: "Option two",
-          healthChange: 0,
-          resultMessage: "fffffffff",
-          upgradePointsReward: 3,
-          moneyReward: 0,
-        },
-      ],
-    },
-  ];
-
-  const encounter = encounters[currentEncounter];
 
   if (!characterState) {
     setTimeout(() => {
       location.reload();
     }, 1500);
-    return <div className={styles.body}>You are dead, restarting game...</div>;
+    return <div>You are dead, restarting game...</div>;
   }
 
-  if (!encounter) {
-    location.reload();
-  }
+  const renderEncounter = () => {
+    switch (currentEncounterId) {
+      case 1:
+        return <Encounter1 onOptionClick={optionClick} />;
+      case 2:
+        return <Encounter2 onOptionClick={optionClick} />;
 
-  return (
-    <div>
-      <div className={styles.storyScreen}>
-        <div className={styles.roundOne}>{encounter.question}</div>
+      case 3:
+        return <Encounter3 onOptionClick={optionClick} />;
 
-        <div className={styles.optionOne}>
-          <button
-            onClick={() =>
-              optionClick(
-                encounter.options[0].healthChange,
-                encounter.options[0].resultMessage,
-                encounter.options[0].upgradePointsReward,
-                encounter.options[0].moneyReward
-              )
-            }
-          >
-            {encounter.options[0].text}
-          </button>
-        </div>
+      case 4:
+        return <Encounter4 onOptionClick={optionClick} />;
 
-        <div className={styles.optionTwo}>
-          <button
-            onClick={() =>
-              optionClick(
-                encounter.options[1].healthChange,
-                encounter.options[1].resultMessage,
-                encounter.options[1].upgradePointsReward,
-                encounter.options[1].moneyReward
-              )
-            }
-          >
-            {encounter.options[1].text}
-          </button>
-        </div>
-      </div>
-    </div>
-  );
+      case 5:
+        return <Encounter5 onOptionClick={optionClick} />;
+
+      case 6:
+        return <Encounter6 onOptionClick={optionClick} />;
+
+      // case 7:
+      // return <Encounter7 onOptionClick={optionClick} />;
+
+      // case 8:
+      // return <Encounter8 onOptionClick={optionClick} />;
+
+      // case 9:
+      // return <Encounter9 onOptionClick={optionClick} />;
+
+      // case 10:
+      // return <Encounter10 onOptionClick={optionClick} />;
+
+      default:
+        return null;
+    }
+  };
+
+  return <div>{renderEncounter()}</div>;
 };
 
 export default Encounters;
