@@ -16,7 +16,8 @@ const Encounter6 = ({ onOptionClick }) => {
     {
       text: "Fight alone",
       healthChange: 0,
-      resultMessage: "Reluctantly Sabina agrees and hides in a nearby cavern",
+      resultMessage:
+        "Reluctantly Sabina agrees runs the same way you came through just minutes ago.",
       upgradePointsReward: 2,
       moneyReward: 0,
       nextEncounterId: 9,

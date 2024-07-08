@@ -17,10 +17,10 @@ const Encounter4 = ({ onOptionClick }) => {
       text: "Sorry, don't have time for this.",
       healthChange: 0,
       resultMessage:
-        "The man puts his head down. -Typical, he says, can't trust a soul in this world.",
+        "The man puts his head down. -Typical, he says, can't trust a soul in this world. You continue travelling, but the day passes by with nothing interesting. You decide to rest for a night in a near by tavern.",
       upgradePointsReward: 0,
       moneyReward: 0,
-      nextEncounterId: 10,
+      nextEncounterId: 12,
     },
   ];
 

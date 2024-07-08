@@ -12,7 +12,13 @@ const Index = () => {
 
   return (
     <div className={styles.body}>
-      <CharacterSelector setCharacter={setCharacter} />
+      {!character ? (
+        <CharacterSelector setCharacter={setCharacter} />
+      ) : (
+        <div></div>
+      )}
+
+      <div className={styles.resultMessage}>{resultMessage}</div>
 
       {character && (
         <Encounters
@@ -36,7 +42,6 @@ const Index = () => {
           <>Money: {!playerMoney ? character.money : playerMoney}</>
         )}
       </div>
-      <div className={styles.resultMessage}>Outcome: {resultMessage}</div>
       <div className={styles.upgradePoints}>
         {playerUpgradePoints && <>Upgrade points: {playerUpgradePoints}</>}
       </div>

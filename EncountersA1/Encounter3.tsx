@@ -7,7 +7,8 @@ const Encounter3 = ({ onOptionClick }) => {
     {
       text: "Leave them be. Why risk it?",
       healthChange: 0,
-      resultMessage: "The bandits return to their hiding spot",
+      resultMessage:
+        "The bandits continue back and return to their hiding spot",
       upgradePointsReward: 0,
       moneyReward: 0,
       nextEncounterId: 4,
@@ -15,10 +16,11 @@ const Encounter3 = ({ onOptionClick }) => {
     {
       text: "Attack them, the road will be safer without them.",
       healthChange: 0,
-      resultMessage: "You draw your weapon and approach the group.",
+      resultMessage:
+        "You draw your weapon and approach the group. After a vicious fight, the marauders are no more",
       upgradePointsReward: 2,
       moneyReward: 0,
-      nextEncounterId: 2,
+      nextEncounterId: 4,
     },
   ];
 
