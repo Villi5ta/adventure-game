@@ -1,0 +1,41 @@
+.main {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 10px 20px;
+  background-color: #333;
+  color: white;
+}
+
+.logo {
+  flex: 1;
+  letter-spacing: 0.1rem;
+}
+
+.menu {
+  flex: 1;
+  display: flex;
+  justify-content: center;
+}
+
+.links {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  gap: 20px;
+}
+
+.links li {
+  display: inline;
+}
+
+.links a {
+  text-decoration: none;
+  color: white;
+  font-size: 18px;
+}
+
+.links a:hover {
+  text-decoration: underline;
+}
