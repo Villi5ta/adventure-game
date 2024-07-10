@@ -6,7 +6,7 @@ const Encounter4 = ({ onOptionClick }) => {
   const options = [
     {
       text: "Sure, I'll help",
-      healthChange: 0,
+      healthChange: 1,
       resultMessage:
         "The man instantly starts thanking you and directs you to the last place he saw his darling wife.",
       upgradePointsReward: 0,
@@ -15,7 +15,7 @@ const Encounter4 = ({ onOptionClick }) => {
     },
     {
       text: "Sorry, don't have time for this.",
-      healthChange: 0,
+      healthChange: 1,
       resultMessage:
         "The man puts his head down. -Typical, he says, can't trust a soul in this world. You continue travelling, but the day passes by with nothing interesting. You decide to rest for a night in a near by tavern.",
       upgradePointsReward: 0,
@@ -34,7 +34,7 @@ const Encounter4 = ({ onOptionClick }) => {
         kind stranger, I will reward you handsomely.
       </div>
       {options.map((option, index) => (
-        <div key={index} className={styles[`option${index + 1}`]}>
+        <div key={index} className={styles.optionBtn}>
           <button
             onClick={() =>
               onOptionClick(

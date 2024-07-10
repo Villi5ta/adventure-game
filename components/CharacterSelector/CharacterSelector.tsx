@@ -34,16 +34,25 @@ const CharacterSelector = ({ setCharacter }) => {
     },
   ];
   return (
-    <div className={styles.characterBuilder}>
+    <div className={styles.characterBuilderWrapper}>
       <p>Choose your character</p>
 
       {characterClassSelect.map((character, index) => (
-        <div key={index}>
-          <p>{character.description}</p>
-          <div></div>
-          <button onClick={() => setCharacter(character)}>
-            {character.name}
-          </button>
+        <div key={index} className={styles.characterCard}>
+          <p className={styles.charDescription}>{character.description}</p>
+          <p className={styles.charStats}>
+            Character Stats: {character.health} Health | {character.money}{" "}
+            Wealth
+          </p>
+
+          <div className={styles.charSelectBtnDv}>
+            <button
+              onClick={() => setCharacter(character)}
+              className={styles.charSelectBtn}
+            >
+              Pick {character.name}
+            </button>
+          </div>
         </div>
       ))}
     </div>

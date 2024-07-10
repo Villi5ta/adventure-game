@@ -31,7 +31,7 @@ const Encounter9 = ({ onOptionClick }) => {
         closer. Its ugly features becoming more and more visible.
       </div>
       {options.map((option, index) => (
-        <div key={index} className={styles[`option${index + 1}`]}>
+        <div key={index} className={styles.optionBtn}>
           <button
             onClick={() =>
               onOptionClick(

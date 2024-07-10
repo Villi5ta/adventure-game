@@ -36,7 +36,7 @@ const Encounter5 = ({ onOptionClick }) => {
         spot a woman. She draws her dagger at you.
       </div>
       {options.map((option, index) => (
-        <div key={index} className={styles[`option${index + 1}`]}>
+        <div key={index} className={styles.optionBtn}>
           <button
             onClick={() =>
               onOptionClick(

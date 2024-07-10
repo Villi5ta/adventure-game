@@ -35,7 +35,7 @@ const Encounter9 = ({ onOptionClick }) => {
         a place to rest. Sabina offers for you to stay at their place.
       </div>
       {options.map((option, index) => (
-        <div key={index} className={styles[`option${index + 1}`]}>
+        <div key={index} className={styles.optionBtn}>
           <button
             onClick={() =>
               onOptionClick(

@@ -51,7 +51,7 @@ const Encounters = ({
     if (updatedHealth <= 0) {
       setGameOver(true);
       setResultMessage(
-        "As is all to common in Normandia, not many adventurers live to tell the tale of their exploits. And neither did you."
+        "As is all too common in Normandia, not many adventurers live to tell the tale of their exploits. And neither did you."
       );
     } else {
       if (nextEncounterId !== undefined) {
@@ -66,7 +66,7 @@ const Encounters = ({
     if (gameOver) {
       const timer = setTimeout(() => {
         location.reload();
-      }, 15000);
+      }, 1500);
       return () => clearTimeout(timer);
     }
   }, [gameOver]);
@@ -75,43 +75,30 @@ const Encounters = ({
     switch (currentEncounterId) {
       case 1:
         return <Encounter1 onOptionClick={optionClick} />;
-
       case 2:
         return <Encounter2 onOptionClick={optionClick} />;
-
       case 3:
         return <Encounter3 onOptionClick={optionClick} />;
-
       case 4:
         return <Encounter4 onOptionClick={optionClick} />;
-
       case 5:
         return <Encounter5 onOptionClick={optionClick} />;
-
       case 6:
         return <Encounter6 onOptionClick={optionClick} />;
-
       case 7:
         return <Encounter7 onOptionClick={optionClick} />;
-
       case 8:
         return <Encounter8 onOptionClick={optionClick} />;
-
       case 9:
         return <Encounter9 onOptionClick={optionClick} />;
-
       case 10:
         return <Encounter10 onOptionClick={optionClick} />;
-
       case 11:
         return <Encounter11 onOptionClick={optionClick} />;
-
       case 12:
         return <Encounter12 onOptionClick={optionClick} />;
-
       case 13:
         return <EndScreen gameScore={gameScore} />;
-
       default:
         return null;
     }

@@ -31,7 +31,7 @@ const Encounter1 = ({ onOptionClick }) => {
         decide if you would rather work on your skills or equipment.
       </div>
       {options.map((option, index) => (
-        <div key={index} className={styles[`option${index + 1}`]}>
+        <div key={index} className={styles.optionBtn}>
           <button
             onClick={() =>
               onOptionClick(

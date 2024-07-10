@@ -32,7 +32,7 @@ const Encounter3 = ({ onOptionClick }) => {
         down or leave them alone?
       </div>
       {options.map((option, index) => (
-        <div key={index} className={styles[`option${index + 1}`]}>
+        <div key={index} className={styles.optionBtn}>
           <button
             onClick={() =>
               onOptionClick(

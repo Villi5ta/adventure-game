@@ -1,0 +1,42 @@
+.characterBuilderWrapper {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+.characterCard {
+  border: 3px solid black;
+  display: flex;
+  flex-direction: column;
+  justify-content: right;
+}
+.charDescription {
+  text-indent: 1rem;
+  margin: 0.5rem;
+}
+
+.charStats {
+  color: blue;
+  border-top: 3px solid black;
+  border-bottom: 3px solid black;
+  padding: 0.5rem;
+}
+
+.charSelectBtn {
+  border: none;
+  background-color: black;
+  color: white;
+  width: 5rem;
+  padding: 1rem 0;
+}
+
+.charSelectBtnDv {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+}
+
+.charSelectBtn:hover {
+  cursor: pointer;
+  background-color: rgb(76, 76, 76);
+  text-decoration: underline;
+}

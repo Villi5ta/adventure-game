@@ -34,7 +34,7 @@ const Encounter11 = ({ onOptionClick }) => {
         but eventually the man calls you over before giving you your reward.
       </div>
       {options.map((option, index) => (
-        <div key={index} className={styles[`option${index + 1}`]}>
+        <div key={index} className={styles.optionBtn}>
           <button
             onClick={() =>
               onOptionClick(

@@ -19,7 +19,7 @@ const Encounter2 = ({ onOptionClick }) => {
       resultMessage:
         "You give them a part of your hard-earned money. Grinning, they move on.",
       upgradePointsReward: 2,
-      moneyReward: 0,
+      moneyReward: -3,
       nextEncounterId: 4,
     },
   ];
@@ -31,7 +31,7 @@ const Encounter2 = ({ onOptionClick }) => {
         group of bandits come after you. Do you engage or pay them?
       </div>
       {options.map((option, index) => (
-        <div key={index} className={styles[`option${index + 1}`]}>
+        <div key={index} className={styles.optionBtn}>
           <button
             onClick={() =>
               onOptionClick(
