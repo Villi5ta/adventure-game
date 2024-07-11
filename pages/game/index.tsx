@@ -15,7 +15,7 @@ const Index = () => {
     if (character) {
       setPlayerHealth(character.health);
       setPlayerMoney(character.money);
-      setPlayerUpgradePoints(0); // Assuming starting upgrade points are 0
+      setPlayerUpgradePoints(0);
     }
   }, [character]);
 

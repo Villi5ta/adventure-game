@@ -62,14 +62,7 @@ const Encounters = ({
     }
   };
 
-  useEffect(() => {
-    if (gameOver) {
-      const timer = setTimeout(() => {
-        location.reload();
-      }, 1500);
-      return () => clearTimeout(timer);
-    }
-  }, [gameOver]);
+  useEffect(() => {}, [gameOver]);
 
   const renderEncounter = () => {
     switch (currentEncounterId) {

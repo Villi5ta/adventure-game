@@ -15,7 +15,7 @@ const Encounter3 = ({ onOptionClick }) => {
     },
     {
       text: "Attack them, the road will be safer without them.",
-      healthChange: 0,
+      healthChange: -3,
       resultMessage:
         "You draw your weapon and approach the group. After a vicious fight, the marauders are no more",
       upgradePointsReward: 2,

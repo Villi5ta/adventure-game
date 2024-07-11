@@ -5,7 +5,10 @@ import styles from "./GameEnd.module.css";
 const EndScreen = ({ gameScore }) => {
   return (
     <div className={styles.storyScreen}>
-      <div className={styles.description}>Your game score is: {gameScore}</div>
+      <p>Your game score is: {gameScore}</p>
+      <button>
+        <a href="/game">Try again?</a>
+      </button>
     </div>
   );
 };

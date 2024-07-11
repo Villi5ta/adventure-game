@@ -16,7 +16,7 @@ const CharacterSelector = ({ setCharacter }) => {
       health: 3,
       money: 10,
       description:
-        "Born and raised in the largest city this side of the Grogdon Mountains, Lana grew bored of her noble lifestyle. Seeking adventure, she decided to hit the road.",
+        "Born and raised in the largest city this side of the Grogdon Mountains, Lana since childhood had an adventurous spirit which lead to her growing bored of the noble lifestyle. Not wanting to be cadged to political dealings of the metropolis, she decided seek refuge in the open countryside.",
     },
     {
       name: "Emma",
@@ -35,26 +35,29 @@ const CharacterSelector = ({ setCharacter }) => {
   ];
   return (
     <div className={styles.characterBuilderWrapper}>
-      <p>Choose your character</p>
+      <p className={styles.headline}>Choose your character</p>
 
-      {characterClassSelect.map((character, index) => (
-        <div key={index} className={styles.characterCard}>
-          <p className={styles.charDescription}>{character.description}</p>
-          <p className={styles.charStats}>
-            Character Stats: {character.health} Health | {character.money}{" "}
-            Wealth
-          </p>
+      <div className={styles.characterCardWrapper}>
+        {characterClassSelect.map((character, index) => (
+          <div key={index} className={styles.characterCard}>
+            <p className={styles.charName}>{character.name}</p>
+            <p className={styles.charDescription}>{character.description}</p>
+            <p className={styles.charStats}>
+              Character Stats: {character.health} Health | {character.money}{" "}
+              Wealth
+            </p>
 
-          <div className={styles.charSelectBtnDv}>
-            <button
-              onClick={() => setCharacter(character)}
-              className={styles.charSelectBtn}
-            >
-              Pick {character.name}
-            </button>
+            <div className={styles.charSelectBtnDv}>
+              <button
+                onClick={() => setCharacter(character)}
+                className={styles.charSelectBtn}
+              >
+                Pick {character.name}
+              </button>
+            </div>
           </div>
-        </div>
-      ))}
+        ))}
+      </div>
     </div>
   );
 };
