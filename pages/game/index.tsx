@@ -11,6 +11,7 @@ const Index = () => {
   const [playerMoney, setPlayerMoney] = useState(null);
   const [playerUpgradePoints, setPlayerUpgradePoints] = useState(0);
   const [resultMessage, setResultMessage] = useState("");
+  const [toggleMessage, setToggleMessage] = useState(false);
 
   useEffect(() => {
     if (character) {
@@ -22,6 +23,11 @@ const Index = () => {
 
   const applyHealthUpgrade = (upgradeAmount) => {
     if (upgradeAmount > playerUpgradePoints) {
+      setToggleMessage(true);
+      setTimeout(() => {
+        setToggleMessage(false);
+      }, 3000);
+
       return;
     } else {
       setPlayerHealth((prevHealth) => prevHealth + upgradeAmount);
@@ -52,7 +58,6 @@ const Index = () => {
                 setCharacterMoney={setPlayerMoney}
                 setResultMessage={setResultMessage}
               />
-              <UpgradeMenu applyHealthUpgrade={applyHealthUpgrade} />
             </>
           )}
 
@@ -62,21 +67,32 @@ const Index = () => {
             </div>
           )}
 
-          <div className={styles.health}>
-            {character && (
-              <>
-                Health:{" "}
-                {playerHealth !== null ? playerHealth : character.health}
-              </>
-            )}
+          <div className={styles.characterStats}>
+            <div className={styles.health}>
+              {character && (
+                <>
+                  Health:{" "}
+                  {playerHealth !== null ? playerHealth : character.health}
+                </>
+              )}
+            </div>
+            <div className={styles.money}>
+              {character && (
+                <>
+                  Money: {playerMoney !== null ? playerMoney : character.money}
+                </>
+              )}
+            </div>
           </div>
-          <div className={styles.money}>
-            {character && (
-              <>Money: {playerMoney !== null ? playerMoney : character.money}</>
-            )}
-          </div>
-          <div className={styles.upgradePoints}>
+          <div className={styles.upgradeWrapper}>
             {character && <>Upgrade points: {playerUpgradePoints}</>}
+            <>
+              {character && (
+                <UpgradeMenu applyHealthUpgrade={applyHealthUpgrade} />
+              )}
+            </>
+
+            {toggleMessage && <div>Not enough upgrade points</div>}
           </div>
         </div>
       </PageTemplate>

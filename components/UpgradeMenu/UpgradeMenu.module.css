@@ -1,3 +1,73 @@
+.upgradeBtns {
+  display: flex;
+  justify-content: center;
+  gap: 0.7rem;
+}
+
 .upgradeBtn {
   padding: 0.5rem;
+  width: 40px;
+  background-color: black;
+  color: white;
+}
+
+.upgradeBtn:nth-of-type(1) {
+  background-color: white;
+  color: black;
+}
+.upgradeBtn:nth-of-type(1):hover {
+  scale: 1.1;
+  cursor: pointer;
+}
+
+.upgradeBtn:hover {
+  scale: 1.1;
+  cursor: pointer;
+}
+
+.upgradeMenuToggleBtn {
+  border: none;
+  background-color: black;
+  color: white;
+  padding: 0.5rem;
+  width: 200px;
+  align-self: center;
+}
+
+.upgradeMenuToggleBtn:hover {
+  cursor: pointer;
+  background-color: rgb(119, 119, 119);
+}
+
+.upgradeMenuWrapper {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  align-items: center;
+}
+
+.healthUpgrade,
+.armourUpgrade {
+  width: 100%;
+  background-color: rgb(241, 241, 241);
+}
+
+.upgradeBtnSetActive {
+  background-color: rgb(0, 0, 0);
+  color: white;
+  width: 150px;
+  border: none;
+  padding: 0.5rem;
+}
+
+.upgradeBtnSetIdle {
+  width: 150px;
+  border: none;
+  padding: 0.5rem;
+}
+
+.wrapper {
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
 }
