@@ -38,7 +38,7 @@ eval("// Exports\nmodule.exports = {\n\t\"main\": \"Header_main__nnQjj\",\n\t\"l
   \*********************************************************/
 /***/ ((module) => {
 
-eval("// Exports\nmodule.exports = {\n\t\"content\": \"PageTemplate_content__xudLU\"\n};\n//# sourceURL=[module]\n//# sourceMappingURL=data:application/json;charset=utf-8;base64,eyJ2ZXJzaW9uIjozLCJmaWxlIjoiLi9jb21wb25lbnRzL1BhZ2VUZW1wbGF0ZS9QYWdlVGVtcGxhdGUubW9kdWxlLmNzcyIsIm1hcHBpbmdzIjoiQUFBQTtBQUNBO0FBQ0E7QUFDQSIsInNvdXJjZXMiOlsid2VicGFjazovL2NoZWNrbGlzdC1hcHAvLi9jb21wb25lbnRzL1BhZ2VUZW1wbGF0ZS9QYWdlVGVtcGxhdGUubW9kdWxlLmNzcz81ODk1Il0sInNvdXJjZXNDb250ZW50IjpbIi8vIEV4cG9ydHNcbm1vZHVsZS5leHBvcnRzID0ge1xuXHRcImNvbnRlbnRcIjogXCJQYWdlVGVtcGxhdGVfY29udGVudF9feHVkTFVcIlxufTtcbiJdLCJuYW1lcyI6W10sInNvdXJjZVJvb3QiOiIifQ==\n//# sourceURL=webpack-internal:///./components/PageTemplate/PageTemplate.module.css\n");
+eval("// Exports\nmodule.exports = {\n\t\"content\": \"PageTemplate_content__xudLU\",\n\t\"wrapper\": \"PageTemplate_wrapper__OYhaG\"\n};\n//# sourceURL=[module]\n//# sourceMappingURL=data:application/json;charset=utf-8;base64,eyJ2ZXJzaW9uIjozLCJmaWxlIjoiLi9jb21wb25lbnRzL1BhZ2VUZW1wbGF0ZS9QYWdlVGVtcGxhdGUubW9kdWxlLmNzcyIsIm1hcHBpbmdzIjoiQUFBQTtBQUNBO0FBQ0E7QUFDQTtBQUNBIiwic291cmNlcyI6WyJ3ZWJwYWNrOi8vY2hlY2tsaXN0LWFwcC8uL2NvbXBvbmVudHMvUGFnZVRlbXBsYXRlL1BhZ2VUZW1wbGF0ZS5tb2R1bGUuY3NzPzU4OTUiXSwic291cmNlc0NvbnRlbnQiOlsiLy8gRXhwb3J0c1xubW9kdWxlLmV4cG9ydHMgPSB7XG5cdFwiY29udGVudFwiOiBcIlBhZ2VUZW1wbGF0ZV9jb250ZW50X194dWRMVVwiLFxuXHRcIndyYXBwZXJcIjogXCJQYWdlVGVtcGxhdGVfd3JhcHBlcl9fT1loYUdcIlxufTtcbiJdLCJuYW1lcyI6W10sInNvdXJjZVJvb3QiOiIifQ==\n//# sourceURL=webpack-internal:///./components/PageTemplate/PageTemplate.module.css\n");
 
 /***/ }),
 

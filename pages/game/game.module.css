@@ -1,3 +1,7 @@
+.wrapper {
+  margin-top: 3rem;
+}
+
 .resultMessage {
   text-align: center;
   padding: 1rem 0;

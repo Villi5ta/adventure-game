@@ -3,6 +3,7 @@ import React, { useEffect, useState } from "react";
 import CharacterSelector from "../../components/CharacterSelector/CharacterSelector";
 import Encounters from "../../components/Encounters/Encounters";
 import PageTemplate from "../../components/PageTemplate/PageTemplate";
+import UpgradeMenu from "../../components/UpgradeMenu/UpgradeMenu";
 
 const Index = () => {
   const [character, setCharacter] = useState(null);
@@ -19,47 +20,64 @@ const Index = () => {
     }
   }, [character]);
 
+  const applyHealthUpgrade = (upgradeAmount) => {
+    if (upgradeAmount > playerUpgradePoints) {
+      return;
+    } else {
+      setPlayerHealth((prevHealth) => prevHealth + upgradeAmount);
+      setPlayerUpgradePoints(
+        (prevUpgradePoints) => prevUpgradePoints - upgradeAmount
+      );
+    }
+  };
+
   return (
     <div className={styles.body}>
       <PageTemplate>
-        {!character ? (
-          <CharacterSelector setCharacter={setCharacter} />
-        ) : (
-          <div></div>
-        )}
+        <div className={styles.wrapper}>
+          {!character ? (
+            <CharacterSelector setCharacter={setCharacter} />
+          ) : (
+            <div></div>
+          )}
 
-        {character && (
-          <Encounters
-            characterHealth={playerHealth}
-            setCharacterHealth={setPlayerHealth}
-            upgradePoints={playerUpgradePoints}
-            setUpgradePoints={setPlayerUpgradePoints}
-            characterMoney={playerMoney}
-            setCharacterMoney={setPlayerMoney}
-            setResultMessage={setResultMessage}
-          />
-        )}
-
-        {resultMessage && (
-          <div className={styles.resultMessage}>
-            Choice outcome: {resultMessage}
-          </div>
-        )}
-
-        <div className={styles.health}>
           {character && (
             <>
-              Health: {playerHealth !== null ? playerHealth : character.health}
+              <Encounters
+                characterHealth={playerHealth}
+                setCharacterHealth={setPlayerHealth}
+                upgradePoints={playerUpgradePoints}
+                setUpgradePoints={setPlayerUpgradePoints}
+                characterMoney={playerMoney}
+                setCharacterMoney={setPlayerMoney}
+                setResultMessage={setResultMessage}
+              />
+              <UpgradeMenu applyHealthUpgrade={applyHealthUpgrade} />
             </>
           )}
-        </div>
-        <div className={styles.money}>
-          {character && (
-            <>Money: {playerMoney !== null ? playerMoney : character.money}</>
+
+          {resultMessage && (
+            <div className={styles.resultMessage}>
+              Choice outcome: {resultMessage}
+            </div>
           )}
-        </div>
-        <div className={styles.upgradePoints}>
-          {character && <>Upgrade points: {playerUpgradePoints}</>}
+
+          <div className={styles.health}>
+            {character && (
+              <>
+                Health:{" "}
+                {playerHealth !== null ? playerHealth : character.health}
+              </>
+            )}
+          </div>
+          <div className={styles.money}>
+            {character && (
+              <>Money: {playerMoney !== null ? playerMoney : character.money}</>
+            )}
+          </div>
+          <div className={styles.upgradePoints}>
+            {character && <>Upgrade points: {playerUpgradePoints}</>}
+          </div>
         </div>
       </PageTemplate>
     </div>
