@@ -15,7 +15,7 @@ const Encounter9 = ({ onOptionClick }) => {
     },
     {
       text: "Agree with Sabina's offer",
-      healthChange: 0,
+      healthChange: +3,
       resultMessage:
         "You agree to stay with the family, just they forgot to mention one thing: they have six children, so getting a full time rest may prove to be a challenge, worthy to put it up there with the Cwentur's fight.",
       upgradePointsReward: 12,

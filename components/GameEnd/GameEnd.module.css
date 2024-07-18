@@ -17,7 +17,7 @@
   padding: 1rem 0;
 }
 
-.storyScreen button a {
+.storyScreen button {
   text-decoration: none;
   color: white;
   border: none;
@@ -27,4 +27,9 @@
   background-color: rgb(66, 66, 66);
   cursor: pointer;
   scale: 1.05;
+}
+
+.aliasInput {
+  width: 200px;
+  height: 20px;
 }

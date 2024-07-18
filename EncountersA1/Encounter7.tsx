@@ -11,7 +11,7 @@ const Encounter7 = ({ onOptionClick }) => {
         "'I may have wanted you dead a second age, but now I think I would rather you live', she replied all sassy before joining you in the fight",
       upgradePointsReward: 0,
       moneyReward: 0,
-      nextEncounterId: 6,
+      nextEncounterId: 8,
     },
     {
       text: "Don't ask the woman for help",
@@ -20,7 +20,7 @@ const Encounter7 = ({ onOptionClick }) => {
         "'Going all lone ranger style, huh? Well good luck then.', - the woman said before leaving you to fight alone",
       upgradePointsReward: 0,
       moneyReward: 0,
-      nextEncounterId: 7,
+      nextEncounterId: 9,
     },
   ];
 

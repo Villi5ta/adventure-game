@@ -10,7 +10,7 @@ const Encounter2 = ({ onOptionClick }) => {
       resultMessage:
         "A vicious fight ensues, but ultimately the bandits lay dead. You scour their bodies and find some money. Probably some other poor travelers.",
       upgradePointsReward: 1,
-      moneyReward: +1,
+      moneyReward: 3,
       nextEncounterId: 4,
     },
     {

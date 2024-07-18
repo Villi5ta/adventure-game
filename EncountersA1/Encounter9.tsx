@@ -6,20 +6,20 @@ const Encounter9 = ({ onOptionClick }) => {
   const options = [
     {
       text: "Try to subdue the beast. A pristine set of horns fetches quite the sum.",
-      healthChange: +2,
+      healthChange: -5,
       resultMessage:
         "You attack the monster, strategically avoiding his head, which coincidentally is his weak spot. You quickly realize why those horns are so sought after: they are rare, because people hunting for them are usually dead. The Cwentur puts up a fierce fight and comes close to ending you before making a small mistake which allows you bring him down. Barely.",
-      upgradePointsReward: 1,
-      moneyReward: 0,
+      upgradePointsReward: 2,
+      moneyReward: 10,
       nextEncounterId: 11,
     },
     {
       text: "Go all out and aim for the Cwentur's weak spot. No need to risk ours lives for money.",
-      healthChange: 0,
+      healthChange: -2,
       resultMessage:
         "You throw everything you have the the beasts head. Soon it's nothing more than a red, slightly disfigured ball while the monster breaths it's final breath.",
       upgradePointsReward: 2,
-      moneyReward: 0,
+      moneyReward: 5,
       nextEncounterId: 11,
     },
   ];

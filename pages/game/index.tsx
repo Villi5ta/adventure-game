@@ -84,16 +84,14 @@ const Index = () => {
               )}
             </div>
           </div>
-          <div className={styles.upgradeWrapper}>
-            {character && <>Upgrade points: {playerUpgradePoints}</>}
-            <>
-              {character && (
-                <UpgradeMenu applyHealthUpgrade={applyHealthUpgrade} />
-              )}
-            </>
 
-            {toggleMessage && <div>Not enough upgrade points</div>}
-          </div>
+          {character && (
+            <div className={styles.upgradeWrapper}>
+              <>Upgrade points: {playerUpgradePoints}</>
+              <UpgradeMenu applyHealthUpgrade={applyHealthUpgrade} />
+              {toggleMessage && <div>Not enough upgrade points</div>}
+            </div>
+          )}
         </div>
       </PageTemplate>
     </div>

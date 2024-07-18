@@ -6,10 +6,10 @@ const Encounter1 = ({ onOptionClick }) => {
   const options = [
     {
       text: "You decide to freshen up your combat moves (+2HP)",
-      healthChange: +2,
+      healthChange: 2,
       resultMessage:
         "After winning a sparring match against a tree, you feel ready for what's ahead.",
-      upgradePointsReward: 1,
+      upgradePointsReward: 0,
       moneyReward: 0,
       nextEncounterId: 2,
     },

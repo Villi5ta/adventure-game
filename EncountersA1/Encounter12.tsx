@@ -6,21 +6,21 @@ const Encounter12 = ({ onOptionClick }) => {
   const options = [
     {
       text: "Head to the city, there are more opportunities there.",
-      healthChange: +2,
+      healthChange: 0,
       resultMessage:
         "After much deliberation, you decide to head towards the gleaming city of Dwardania. Many people make big there, perhaps it is your turn to do the same.",
-      upgradePointsReward: 12,
+      upgradePointsReward: 0,
       moneyReward: 0,
-      nextEncounterId: 20,
+      nextEncounterId: -1,
     },
     {
       text: "Stick to the open country for the untapped potential.",
       healthChange: 0,
       resultMessage:
         "After much deliberation, you make the decision to stick to the countryside. With less order, there are bound to be more opportunities for some interesting encounters.",
-      upgradePointsReward: 12,
+      upgradePointsReward: 0,
       moneyReward: 0,
-      nextEncounterId: 20,
+      nextEncounterId: -1,
     },
   ];
 

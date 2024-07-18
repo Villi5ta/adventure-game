@@ -53,7 +53,15 @@ const Encounters = ({
       setResultMessage(
         "As is all too common in Normandia, not many adventurers live to tell the tale of their exploits. And neither did you."
       );
+      setCharacterHealth("Dead");
     } else {
+      if (nextEncounterId === -1) {
+        setGameOver(true);
+        setResultMessage(
+          "After experiencing and surviving the horrors Normandia, you decide to settle back to a normal life."
+        );
+      }
+
       if (nextEncounterId !== undefined) {
         setCurrentEncounterId(nextEncounterId);
       } else {

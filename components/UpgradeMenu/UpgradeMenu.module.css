@@ -58,12 +58,18 @@
   width: 150px;
   border: none;
   padding: 0.5rem;
+  cursor: pointer;
+}
+
+.upgradeBtnSetActive:hover {
+  background-color: rgb(71, 71, 71);
 }
 
 .upgradeBtnSetIdle {
   width: 150px;
   border: none;
   padding: 0.5rem;
+  cursor: not-allowed;
 }
 
 .wrapper {

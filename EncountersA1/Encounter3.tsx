@@ -19,7 +19,7 @@ const Encounter3 = ({ onOptionClick }) => {
       resultMessage:
         "You draw your weapon and approach the group. After a vicious fight, the marauders are no more",
       upgradePointsReward: 2,
-      moneyReward: 0,
+      moneyReward: 3,
       nextEncounterId: 4,
     },
   ];

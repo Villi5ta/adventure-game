@@ -18,8 +18,8 @@ const Encounter11 = ({ onOptionClick }) => {
       healthChange: 0,
       resultMessage:
         "The man agrees to give you a bonus, but instead of extra money he offers you a potent weapon sharpening oil. Not wanting to cause them trouble, you agree and proceed down the read to the nearest tavern where you decide to stay the night.",
-      upgradePointsReward: 12,
-      moneyReward: 0,
+      upgradePointsReward: 15,
+      moneyReward: 7,
       nextEncounterId: 12,
     },
   ];

@@ -9,7 +9,7 @@ const Encounter6 = ({ onOptionClick }) => {
       healthChange: 0,
       resultMessage:
         "'Of-bloody-course', - she says before drawing another dagger",
-      upgradePointsReward: 1,
+      upgradePointsReward: 0,
       moneyReward: 0,
       nextEncounterId: 8,
     },
@@ -18,7 +18,7 @@ const Encounter6 = ({ onOptionClick }) => {
       healthChange: 0,
       resultMessage:
         "Reluctantly Sabina agrees runs the same way you came through just minutes ago.",
-      upgradePointsReward: 2,
+      upgradePointsReward: 0,
       moneyReward: 0,
       nextEncounterId: 9,
     },

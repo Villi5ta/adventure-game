@@ -30,7 +30,7 @@ const UpgradeMenu = ({ applyHealthUpgrade }: UpgradeMenuProps) => {
         className={styles.upgradeMenuToggleBtn}
         onClick={() => setShowUpgradeMenu(!showUpgradeMenu)}
       >
-        Show upgrades
+        Upgrade menu
       </button>
 
       {showUpgradeMenu && (
