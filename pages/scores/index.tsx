@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
 import PageTemplate from "../../components/PageTemplate/PageTemplate";
+import ScoreWrapper from "../../components/ScoreWrapper/ScoreWrapper";
 import axios from "axios";
 
 const index = () => {
@@ -23,7 +24,9 @@ const index = () => {
 
   return (
     <div>
-      <PageTemplate>best scoree</PageTemplate>
+      <PageTemplate>
+        {scores && <ScoreWrapper scores={scores.scores} />}
+      </PageTemplate>
     </div>
   );
 };
