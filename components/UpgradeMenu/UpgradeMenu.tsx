@@ -3,11 +3,15 @@ import styles from "./UpgradeMenu.module.css";
 
 type UpgradeMenuProps = {
   applyHealthUpgrade: (upgradeAmount: number) => void;
+  applyArmorUpgrade: (upgradeAmount: number) => void;
 };
 
-const UpgradeMenu = ({ applyHealthUpgrade }: UpgradeMenuProps) => {
+const UpgradeMenu = ({
+  applyHealthUpgrade,
+  applyArmorUpgrade,
+}: UpgradeMenuProps) => {
   const [healthUpgradeSelect, setHealthUpgradeSelect] = useState(0);
-  const [armourUpgradeSelect, setArmourUpgradeSelect] = useState(0);
+  const [armourUpgradeSelect, setArmorUpgradeSelect] = useState(0);
 
   const [showUpgradeMenu, setShowUpgradeMenu] = useState(false);
 
@@ -16,12 +20,14 @@ const UpgradeMenu = ({ applyHealthUpgrade }: UpgradeMenuProps) => {
   }
 
   if (armourUpgradeSelect === -1) {
-    setArmourUpgradeSelect(0);
+    setArmorUpgradeSelect(0);
   }
 
   const setCharacterUpgrades = () => {
     applyHealthUpgrade(healthUpgradeSelect);
     setHealthUpgradeSelect(0);
+    applyArmorUpgrade(armourUpgradeSelect);
+    setArmorUpgradeSelect(0);
   };
 
   return (
@@ -54,18 +60,18 @@ const UpgradeMenu = ({ applyHealthUpgrade }: UpgradeMenuProps) => {
             </div>
           </div>
           <div className={styles.armourUpgrade}>
-            Armour upgrade (WIP)
+            Armour upgrade
             <p>{armourUpgradeSelect}</p>
             <div className={styles.upgradeBtns}>
               <button
                 className={styles.upgradeBtn}
-                onClick={() => setArmourUpgradeSelect(armourUpgradeSelect + 1)}
+                onClick={() => setArmorUpgradeSelect(armourUpgradeSelect + 1)}
               >
                 +
               </button>
               <button
                 className={styles.upgradeBtn}
-                onClick={() => setArmourUpgradeSelect(armourUpgradeSelect - 1)}
+                onClick={() => setArmorUpgradeSelect(armourUpgradeSelect - 1)}
               >
                 -
               </button>

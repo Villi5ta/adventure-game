@@ -19,6 +19,7 @@ const Encounters = ({
   setCharacterHealth,
   characterMoney,
   setCharacterMoney,
+  characterArmor,
   upgradePoints,
   setUpgradePoints,
   setResultMessage,
@@ -35,6 +36,13 @@ const Encounters = ({
     nextEncounterId
   ) => {
     setResultMessage(resultMessage);
+
+    if (healthChange <= -1) {
+      healthChange = healthChange + characterArmor;
+      if (healthChange >= 1) {
+        healthChange = 0;
+      }
+    }
 
     const updatedHealth = characterHealth + healthChange;
     setCharacterHealth(updatedHealth);

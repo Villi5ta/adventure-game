@@ -9,6 +9,7 @@ const Index = () => {
   const [character, setCharacter] = useState(null);
   const [playerHealth, setPlayerHealth] = useState(null);
   const [playerMoney, setPlayerMoney] = useState(null);
+  const [playerArmor, setPlayerArmor] = useState(null);
   const [playerUpgradePoints, setPlayerUpgradePoints] = useState(0);
   const [resultMessage, setResultMessage] = useState("");
   const [toggleMessage, setToggleMessage] = useState(false);
@@ -17,6 +18,7 @@ const Index = () => {
     if (character) {
       setPlayerHealth(character.health);
       setPlayerMoney(character.money);
+      setPlayerArmor(character.armor);
       setPlayerUpgradePoints(0);
     }
   }, [character]);
@@ -31,6 +33,22 @@ const Index = () => {
       return;
     } else {
       setPlayerHealth((prevHealth) => prevHealth + upgradeAmount);
+      setPlayerUpgradePoints(
+        (prevUpgradePoints) => prevUpgradePoints - upgradeAmount
+      );
+    }
+  };
+
+  const applyArmorUpgrade = (upgradeAmount) => {
+    if (upgradeAmount > playerUpgradePoints) {
+      setToggleMessage(true);
+      setTimeout(() => {
+        setToggleMessage(false);
+      }, 3000);
+
+      return;
+    } else {
+      setPlayerArmor((prevArmor) => prevArmor + upgradeAmount);
       setPlayerUpgradePoints(
         (prevUpgradePoints) => prevUpgradePoints - upgradeAmount
       );
@@ -56,6 +74,7 @@ const Index = () => {
                 setUpgradePoints={setPlayerUpgradePoints}
                 characterMoney={playerMoney}
                 setCharacterMoney={setPlayerMoney}
+                characterArmor={playerArmor}
                 setResultMessage={setResultMessage}
               />
             </>
@@ -76,6 +95,17 @@ const Index = () => {
                 </>
               )}
             </div>
+          </div>
+
+          <div className={styles.characterStats}>
+            <div className={styles.armor}>
+              {character && (
+                <>
+                  Armor: {playerArmor !== null ? playerArmor : character.armor}
+                </>
+              )}
+            </div>
+
             <div className={styles.money}>
               {character && (
                 <>
@@ -88,7 +118,10 @@ const Index = () => {
           {character && (
             <div className={styles.upgradeWrapper}>
               <>Upgrade points: {playerUpgradePoints}</>
-              <UpgradeMenu applyHealthUpgrade={applyHealthUpgrade} />
+              <UpgradeMenu
+                applyHealthUpgrade={applyHealthUpgrade}
+                applyArmorUpgrade={applyArmorUpgrade}
+              />
               {toggleMessage && <div>Not enough upgrade points</div>}
             </div>
           )}
