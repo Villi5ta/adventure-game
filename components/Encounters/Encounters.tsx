@@ -1,18 +1,8 @@
 /* eslint-disable react/prop-types */
 import React, { useState, useEffect } from "react";
-import Encounter1 from "../../EncountersA1/Encounter1";
-import Encounter2 from "../../EncountersA1/Encounter2";
-import Encounter3 from "../../EncountersA1/Encounter3";
-import Encounter4 from "../../EncountersA1/Encounter4";
-import Encounter5 from "../../EncountersA1/Encounter5";
-import Encounter6 from "../../EncountersA1/Encounter6";
-import Encounter7 from "../../EncountersA1/Encounter7";
-import Encounter8 from "../../EncountersA1/Encounter8";
-import Encounter9 from "../../EncountersA1/Encounter9";
-import Encounter10 from "../../EncountersA1/Encounter10";
-import Encounter11 from "../../EncountersA1/Encounter11";
-import Encounter12 from "../../EncountersA1/Encounter12";
+import axios from "axios";
 import EndScreen from "./../GameEnd/GameEnd";
+import styles from "./Encounters.module.css";
 
 const Encounters = ({
   characterHealth,
@@ -24,9 +14,29 @@ const Encounters = ({
   setUpgradePoints,
   setResultMessage,
 }) => {
-  const [currentEncounterId, setCurrentEncounterId] = useState(1);
+  const [id, setId] = useState("1");
   const [gameOver, setGameOver] = useState(false);
   const [gameScore, setGameScore] = useState(null);
+  const [encounter, setEncounter] = useState(null);
+
+  console.log(id);
+
+  useEffect(() => {
+    const fetchEncounter = async () => {
+      try {
+        const response = await axios.get(
+          `${process.env.SERVER_URL}/encounter/${id}`
+        );
+        setEncounter(response.data.encounter[0]);
+      } catch (error) {
+        console.error("Error fetching encounter data:", error);
+      }
+    };
+
+    if (!gameOver) {
+      fetchEncounter();
+    }
+  }, [id, gameOver]);
 
   const optionClick = (
     healthChange,
@@ -38,7 +48,7 @@ const Encounters = ({
     setResultMessage(resultMessage);
 
     if (healthChange <= -1) {
-      healthChange = healthChange + characterArmor;
+      healthChange += characterArmor;
       if (healthChange >= 1) {
         healthChange = 0;
       }
@@ -68,54 +78,42 @@ const Encounters = ({
         setResultMessage(
           "After experiencing and surviving the horrors Normandia, you decide to settle back to a normal life."
         );
-      }
-
-      if (nextEncounterId !== undefined) {
-        setCurrentEncounterId(nextEncounterId);
+      } else if (nextEncounterId !== undefined) {
+        setId(nextEncounterId);
       } else {
-        setCurrentEncounterId((prev) => prev + 1);
+        setId((prev) => prev + 1);
       }
     }
   };
 
-  useEffect(() => {}, [gameOver]);
+  if (gameOver) {
+    return <EndScreen gameScore={gameScore} />;
+  }
 
-  const renderEncounter = () => {
-    switch (currentEncounterId) {
-      case 1:
-        return <Encounter1 onOptionClick={optionClick} />;
-      case 2:
-        return <Encounter2 onOptionClick={optionClick} />;
-      case 3:
-        return <Encounter3 onOptionClick={optionClick} />;
-      case 4:
-        return <Encounter4 onOptionClick={optionClick} />;
-      case 5:
-        return <Encounter5 onOptionClick={optionClick} />;
-      case 6:
-        return <Encounter6 onOptionClick={optionClick} />;
-      case 7:
-        return <Encounter7 onOptionClick={optionClick} />;
-      case 8:
-        return <Encounter8 onOptionClick={optionClick} />;
-      case 9:
-        return <Encounter9 onOptionClick={optionClick} />;
-      case 10:
-        return <Encounter10 onOptionClick={optionClick} />;
-      case 11:
-        return <Encounter11 onOptionClick={optionClick} />;
-      case 12:
-        return <Encounter12 onOptionClick={optionClick} />;
-      case 13:
-        return <EndScreen gameScore={gameScore} />;
-      default:
-        return null;
-    }
-  };
+  if (!encounter) {
+    return <div>Loading...</div>;
+  }
 
   return (
-    <div>
-      {gameOver ? <EndScreen gameScore={gameScore} /> : renderEncounter()}
+    <div className={styles.storyScreen}>
+      <p className={styles.description}>{encounter.description}</p>
+      {encounter.choices.map((choice, index) => (
+        <div className={styles.optionBtn} key={index}>
+          <button
+            onClick={() =>
+              optionClick(
+                choice.healthChange,
+                choice.resultMessage,
+                choice.upgradePointsReward,
+                choice.moneyReward,
+                choice.nextEncounterId
+              )
+            }
+          >
+            {choice.optionDescription}
+          </button>
+        </div>
+      ))}
     </div>
   );
 };

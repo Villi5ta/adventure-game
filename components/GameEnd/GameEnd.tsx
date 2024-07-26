@@ -39,7 +39,7 @@ const EndScreen = ({ gameScore }) => {
 
   return (
     <div className={styles.storyScreen}>
-      <p>Your game score is: {gameScore}</p>
+      <p>You died. Game score is: {gameScore}</p>
       <p>
         Enter your alias to compare your results against other adventurers
         (optional)
