@@ -4,7 +4,7 @@ import { useRouter } from "next/router";
 import axios from "axios";
 
 // eslint-disable-next-line react/prop-types
-const EndScreen = ({ gameScore }) => {
+const EndScreen = ({ gameScore, isPlayerAlive }) => {
   const router = useRouter();
   const [alias, setAlias] = useState("");
 
@@ -39,7 +39,12 @@ const EndScreen = ({ gameScore }) => {
 
   return (
     <div className={styles.storyScreen}>
-      <p>You died. Game score is: {gameScore}</p>
+      {isPlayerAlive === true ? (
+        <p>Game completed. Game score is: {gameScore}</p>
+      ) : (
+        <p>You died. Game score is: {gameScore}</p>
+      )}
+
       <p>
         Enter your alias to compare your results against other adventurers
         (optional)

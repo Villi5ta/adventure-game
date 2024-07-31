@@ -1,10 +1,32 @@
-/* eslint-disable react/prop-types */
 import React, { useState, useEffect } from "react";
 import axios from "axios";
 import EndScreen from "./../GameEnd/GameEnd";
 import styles from "./Encounters.module.css";
 
-const Encounters = ({
+interface Encounter {
+  description: string;
+  choices: {
+    optionDescription: string;
+    healthChange: number;
+    resultMessage: string;
+    upgradePointsReward: number;
+    moneyReward: number;
+    nextEncounterId: number;
+  }[];
+}
+
+interface Props {
+  characterHealth: number;
+  setCharacterHealth: React.Dispatch<React.SetStateAction<number | string>>;
+  characterMoney: number;
+  setCharacterMoney: React.Dispatch<React.SetStateAction<number>>;
+  characterArmor: number;
+  upgradePoints: number;
+  setUpgradePoints: React.Dispatch<React.SetStateAction<number>>;
+  setResultMessage: React.Dispatch<React.SetStateAction<string>>;
+}
+
+const Encounters: React.FC<Props> = ({
   characterHealth,
   setCharacterHealth,
   characterMoney,
@@ -14,18 +36,26 @@ const Encounters = ({
   setUpgradePoints,
   setResultMessage,
 }) => {
-  const [id, setId] = useState("1");
+  const [id, setId] = useState<number>(1);
   const [gameOver, setGameOver] = useState(false);
-  const [gameScore, setGameScore] = useState(null);
-  const [encounter, setEncounter] = useState(null);
+  const [gameScore, setGameScore] = useState<number | null>(null);
+  const [encounter, setEncounter] = useState<Encounter | null>(null);
+  const [playerAliveCheck, setPlayerAliveCheck] = useState(true);
 
-  console.log(id);
+  const formatNumber = (num: number) => {
+    const formattedNumber = num > 0 ? `+${num}` : num.toString();
+    const className =
+      num > 0 ? styles.positive : num < 0 ? styles.negative : "";
+    return <span className={className}>{formattedNumber}</span>;
+  };
 
   useEffect(() => {
     const fetchEncounter = async () => {
       try {
+        const encounterId = id.toString();
+
         const response = await axios.get(
-          `${process.env.SERVER_URL}/encounter/${id}`
+          `${process.env.SERVER_URL}/encounter/${encounterId}`
         );
         setEncounter(response.data.encounter[0]);
       } catch (error) {
@@ -39,11 +69,11 @@ const Encounters = ({
   }, [id, gameOver]);
 
   const optionClick = (
-    healthChange,
-    resultMessage,
-    upgradePointsReward,
-    moneyReward,
-    nextEncounterId
+    healthChange: number,
+    resultMessage: string,
+    upgradePointsReward: number,
+    moneyReward: number,
+    nextEncounterId: number
   ) => {
     setResultMessage(resultMessage);
 
@@ -57,6 +87,31 @@ const Encounters = ({
     const updatedHealth = characterHealth + healthChange;
     setCharacterHealth(updatedHealth);
 
+    if (updatedHealth <= 0) {
+      setGameOver(true);
+      setResultMessage("");
+      setPlayerAliveCheck(false);
+      setCharacterHealth("Dead");
+      return;
+    } else {
+      if (nextEncounterId === -1) {
+        setGameOver(true);
+        setPlayerAliveCheck(true);
+        setResultMessage("");
+      } else if (nextEncounterId !== undefined) {
+        setId(nextEncounterId);
+      } else {
+        setId((prevId) => {
+          if (typeof prevId === "number") {
+            return prevId + 1;
+          } else {
+            const parsedId = parseInt(prevId, 10);
+            return isNaN(parsedId) ? prevId : parsedId + 1;
+          }
+        });
+      }
+    }
+
     const updatedCharacterMoney = characterMoney + moneyReward;
     setCharacterMoney(updatedCharacterMoney);
 
@@ -65,29 +120,10 @@ const Encounters = ({
 
     const totalGameScore = updatedUpgradePoints + updatedCharacterMoney;
     setGameScore(totalGameScore);
-
-    if (updatedHealth <= 0) {
-      setGameOver(true);
-      setResultMessage(
-        "As is all too common in Normandia, not many adventurers live to tell the tale of their exploits. And neither did you."
-      );
-      setCharacterHealth("Dead");
-    } else {
-      if (nextEncounterId === -1) {
-        setGameOver(true);
-        setResultMessage(
-          "After experiencing and surviving the horrors Normandia, you decide to settle back to a normal life."
-        );
-      } else if (nextEncounterId !== undefined) {
-        setId(nextEncounterId);
-      } else {
-        setId((prev) => prev + 1);
-      }
-    }
   };
 
   if (gameOver) {
-    return <EndScreen gameScore={gameScore} />;
+    return <EndScreen gameScore={gameScore} isPlayerAlive={playerAliveCheck} />;
   }
 
   if (!encounter) {
@@ -111,6 +147,15 @@ const Encounters = ({
             }
           >
             {choice.optionDescription}
+            {choice.healthChange !== 0 && (
+              <> {formatNumber(choice.healthChange)} HP; </>
+            )}
+            {choice.moneyReward !== 0 && (
+              <> {formatNumber(choice.moneyReward)} GOLD; </>
+            )}
+            {choice.upgradePointsReward !== 0 && (
+              <> {formatNumber(choice.upgradePointsReward)} UP; </>
+            )}
           </button>
         </div>
       ))}

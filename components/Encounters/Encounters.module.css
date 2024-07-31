@@ -23,3 +23,13 @@
   color: white;
   cursor: pointer;
 }
+
+.positive {
+  color: green;
+  font-weight: bold;
+}
+
+.negative {
+  color: red;
+  font-weight: bold;
+}
