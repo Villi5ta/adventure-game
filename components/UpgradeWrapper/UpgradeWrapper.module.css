@@ -1,0 +1,7 @@
+.upgradeWrapper {
+  align-self: center;
+  text-align: center;
+  border: 2px solid black;
+  width: 400px;
+  padding: 1rem;
+}

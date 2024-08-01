@@ -3,21 +3,23 @@ import axios from "axios";
 import EndScreen from "./../GameEnd/GameEnd";
 import styles from "./Encounters.module.css";
 
+interface Choice {
+  optionDescription: string;
+  healthChange: number;
+  resultMessage: string;
+  upgradePointsReward: number;
+  moneyReward: number;
+  nextEncounterId: number;
+}
+
 interface Encounter {
   description: string;
-  choices: {
-    optionDescription: string;
-    healthChange: number;
-    resultMessage: string;
-    upgradePointsReward: number;
-    moneyReward: number;
-    nextEncounterId: number;
-  }[];
+  choices: Choice[];
 }
 
 interface Props {
   characterHealth: number;
-  setCharacterHealth: React.Dispatch<React.SetStateAction<number | string>>;
+  setCharacterHealth: React.Dispatch<React.SetStateAction<number>>;
   characterMoney: number;
   setCharacterMoney: React.Dispatch<React.SetStateAction<number>>;
   characterArmor: number;
@@ -53,11 +55,10 @@ const Encounters: React.FC<Props> = ({
     const fetchEncounter = async () => {
       try {
         const encounterId = id.toString();
-
         const response = await axios.get(
           `${process.env.SERVER_URL}/encounter/${encounterId}`
         );
-        setEncounter(response.data.encounter[0]);
+        setEncounter(response.data.encounter);
       } catch (error) {
         console.error("Error fetching encounter data:", error);
       }
@@ -91,7 +92,7 @@ const Encounters: React.FC<Props> = ({
       setGameOver(true);
       setResultMessage("");
       setPlayerAliveCheck(false);
-      setCharacterHealth("Dead");
+      setCharacterHealth(0);
       return;
     } else {
       if (nextEncounterId === -1) {

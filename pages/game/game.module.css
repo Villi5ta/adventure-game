@@ -4,29 +4,6 @@
   flex-direction: column;
 }
 
-.upgradeWrapper {
-  align-self: center;
-  text-align: center;
-  border: 2px solid black;
-  width: 400px;
-  padding: 1rem;
-}
-
-.resultMessage {
-  text-align: center;
-  padding: 1rem 0;
-  font-weight: 600;
-  letter-spacing: 1px;
-}
-
-.characterStats {
-  display: flex;
-  justify-content: center;
-  gap: 1rem;
-  padding: 1rem;
-  font-size: 20px;
-}
-
 .health {
   color: brown;
 }

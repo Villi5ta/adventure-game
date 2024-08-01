@@ -1,18 +1,23 @@
-import styles from "./game.module.css";
 import React, { useEffect, useState } from "react";
+import styles from "./game.module.css";
 import CharacterSelector from "../../components/CharacterSelector/CharacterSelector";
-import Encounters from "../../components/Encounters/Encounters";
 import PageTemplate from "../../components/PageTemplate/PageTemplate";
-import UpgradeMenu from "../../components/UpgradeMenu/UpgradeMenu";
+import MainGame from "../../components/MainGame/MainGame";
 
-const Index = () => {
-  const [character, setCharacter] = useState(null);
-  const [playerHealth, setPlayerHealth] = useState(null);
-  const [playerMoney, setPlayerMoney] = useState(null);
-  const [playerArmor, setPlayerArmor] = useState(null);
-  const [playerUpgradePoints, setPlayerUpgradePoints] = useState(0);
-  const [resultMessage, setResultMessage] = useState("");
-  const [toggleMessage, setToggleMessage] = useState(false);
+interface Character {
+  health: number;
+  money: number;
+  armor: number;
+}
+
+const Index: React.FC = () => {
+  const [character, setCharacter] = useState<Character | null>(null);
+  const [playerHealth, setPlayerHealth] = useState<number | null>(null);
+  const [playerMoney, setPlayerMoney] = useState<number | null>(null);
+  const [playerArmor, setPlayerArmor] = useState<number | null>(null);
+  const [playerUpgradePoints, setPlayerUpgradePoints] = useState<number>(0);
+  const [resultMessage, setResultMessage] = useState<string>("");
+  const [toggleMessage, setToggleMessage] = useState<boolean>(false);
 
   useEffect(() => {
     if (character) {
@@ -23,36 +28,32 @@ const Index = () => {
     }
   }, [character]);
 
-  const applyHealthUpgrade = (upgradeAmount) => {
+  const applyHealthUpgrade = (upgradeAmount: number) => {
     if (upgradeAmount > playerUpgradePoints) {
       setToggleMessage(true);
-      setTimeout(() => {
-        setToggleMessage(false);
-      }, 3000);
-
+      setTimeout(() => setToggleMessage(false), 3000);
       return;
-    } else {
-      setPlayerHealth((prevHealth) => prevHealth + upgradeAmount);
-      setPlayerUpgradePoints(
-        (prevUpgradePoints) => prevUpgradePoints - upgradeAmount
-      );
     }
+    setPlayerHealth((prevHealth) =>
+      prevHealth !== null ? Number(prevHealth) + upgradeAmount : upgradeAmount
+    );
+    setPlayerUpgradePoints(
+      (prevUpgradePoints) => prevUpgradePoints - upgradeAmount
+    );
   };
 
-  const applyArmorUpgrade = (upgradeAmount) => {
+  const applyArmorUpgrade = (upgradeAmount: number) => {
     if (upgradeAmount > playerUpgradePoints) {
       setToggleMessage(true);
-      setTimeout(() => {
-        setToggleMessage(false);
-      }, 3000);
-
+      setTimeout(() => setToggleMessage(false), 3000);
       return;
-    } else {
-      setPlayerArmor((prevArmor) => prevArmor + upgradeAmount);
-      setPlayerUpgradePoints(
-        (prevUpgradePoints) => prevUpgradePoints - upgradeAmount
-      );
     }
+    setPlayerArmor((prevArmor) =>
+      prevArmor !== null ? prevArmor + upgradeAmount : upgradeAmount
+    );
+    setPlayerUpgradePoints(
+      (prevUpgradePoints) => prevUpgradePoints - upgradeAmount
+    );
   };
 
   return (
@@ -62,68 +63,21 @@ const Index = () => {
           {!character ? (
             <CharacterSelector setCharacter={setCharacter} />
           ) : (
-            <div></div>
-          )}
-
-          {character && (
-            <>
-              <Encounters
-                characterHealth={playerHealth}
-                setCharacterHealth={setPlayerHealth}
-                upgradePoints={playerUpgradePoints}
-                setUpgradePoints={setPlayerUpgradePoints}
-                characterMoney={playerMoney}
-                setCharacterMoney={setPlayerMoney}
-                characterArmor={playerArmor}
-                setResultMessage={setResultMessage}
-              />
-            </>
-          )}
-
-          {resultMessage && (
-            <div className={styles.resultMessage}>
-              Choice outcome: {resultMessage}
-            </div>
-          )}
-
-          <div className={styles.characterStats}>
-            <div className={styles.health}>
-              {character && (
-                <>
-                  Health:{" "}
-                  {playerHealth !== null ? playerHealth : character.health}
-                </>
-              )}
-            </div>
-          </div>
-
-          <div className={styles.characterStats}>
-            <div className={styles.armor}>
-              {character && (
-                <>
-                  Armor: {playerArmor !== null ? playerArmor : character.armor}
-                </>
-              )}
-            </div>
-
-            <div className={styles.money}>
-              {character && (
-                <>
-                  Money: {playerMoney !== null ? playerMoney : character.money}
-                </>
-              )}
-            </div>
-          </div>
-
-          {character && (
-            <div className={styles.upgradeWrapper}>
-              <>Upgrade points: {playerUpgradePoints}</>
-              <UpgradeMenu
-                applyHealthUpgrade={applyHealthUpgrade}
-                applyArmorUpgrade={applyArmorUpgrade}
-              />
-              {toggleMessage && <div>Not enough upgrade points</div>}
-            </div>
+            <MainGame
+              character={character}
+              playerHealth={playerHealth}
+              setPlayerHealth={setPlayerHealth}
+              playerMoney={playerMoney}
+              setPlayerMoney={setPlayerMoney}
+              playerArmor={playerArmor}
+              playerUpgradePoints={playerUpgradePoints}
+              setPlayerUpgradePoints={setPlayerUpgradePoints}
+              resultMessage={resultMessage}
+              setResultMessage={setResultMessage}
+              applyHealthUpgrade={applyHealthUpgrade}
+              applyArmorUpgrade={applyArmorUpgrade}
+              toggleMessage={toggleMessage}
+            />
           )}
         </div>
       </PageTemplate>
