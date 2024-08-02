@@ -2,39 +2,47 @@ import React, { useState } from "react";
 import styles from "./GameEnd.module.css";
 import { useRouter } from "next/router";
 import axios from "axios";
+import cookies from "js-cookie";
 
 // eslint-disable-next-line react/prop-types
 const EndScreen = ({ gameScore, isPlayerAlive }) => {
   const router = useRouter();
-  const [alias, setAlias] = useState("");
+  const [shareScore, setShareScore] = useState(false);
 
-  const postGameScore = async () => {
-    const gameInfo = {
-      score: gameScore,
-      playerName: alias,
-    };
+  const shareScoreToggle = () => {
+    setShareScore(!shareScore);
+  };
 
-    if (!gameInfo.playerName) {
-      gameInfo.playerName = "Unnamed adventurer";
-    }
+  const finishGame = async () => {
+    if (shareScore === true) {
+      const gameInfo = {
+        score: gameScore,
+      };
 
-    if (!gameInfo.score) {
-      gameInfo.score = 0;
-    }
-
-    try {
-      const response = await axios.post(
-        `${process.env.SERVER_URL}/scores`,
-        gameInfo
-      );
-
-      if (response.status === 200) {
-        router.reload();
-        console.log(response.data.score);
+      if (!gameInfo.score) {
+        gameInfo.score = 0;
       }
-    } catch (err) {
-      console.log(err);
+
+      const headers = {
+        authorization: cookies.get("jwt_token"),
+      };
+
+      try {
+        const response = await axios.post(
+          `${process.env.SERVER_URL}/scores`,
+          gameInfo,
+          { headers }
+        );
+
+        if (response.status === 200) {
+          console.log(response.data.score);
+          alert("score added");
+        }
+      } catch (err) {
+        console.log(err);
+      }
     }
+    router.reload();
   };
 
   return (
@@ -45,18 +53,12 @@ const EndScreen = ({ gameScore, isPlayerAlive }) => {
         <p>You died. Game score is: {gameScore}</p>
       )}
 
-      <p>
-        Enter your alias to compare your results against other adventurers
-        (optional)
-      </p>
-      <input
-        value={alias}
-        onChange={(e) => setAlias(e.target.value)}
-        placeholder="Enter your alias"
-        className={styles.aliasInput}
-      />
+      <div>
+        Want to save your score? Check this box:
+        <input type="checkbox" onClick={shareScoreToggle} />
+      </div>
 
-      <button onClick={postGameScore}>Try again?</button>
+      <button onClick={finishGame}>Try again?</button>
     </div>
   );
 };

@@ -20,7 +20,7 @@ const ScoreWrapper = ({ scores }: ScoresType) => {
         {sortedScores.map((score) => (
           <div key={score.id} className={styles.scoreBox}>
             <div className={styles.scoreElement}>Score: {score.score}</div>
-            <div className={styles.nameElement}>Player: {score.playerName}</div>
+            <div className={styles.nameElement}>Player: {score.userName}</div>
 
             <div className={styles.dateElement}>
               Score date: {formatDate(score.createdAt)}

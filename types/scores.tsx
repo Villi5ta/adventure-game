@@ -1,6 +1,6 @@
 export type ScoreType = {
   score: number;
-  playerName: string;
+  userName: string;
   createdAt: string;
   id: string;
 };

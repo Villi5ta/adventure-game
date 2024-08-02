@@ -1,8 +1,20 @@
 import React from "react";
 import styles from "./CharacterSelector.module.css";
+import cookies from "js-cookie";
 
 // eslint-disable-next-line react/prop-types
 const CharacterSelector = ({ setCharacter }) => {
+  const headers = {
+    authorization: cookies.get("jwt_token"),
+  };
+
+  if (headers.authorization === undefined) {
+    console.log("log in for best experience");
+    // setTimeout(() => {
+    //   router.push("/login");
+    // }, 2000);
+  }
+
   type CharacterClassSelectType = {
     name: string;
     health: number;
