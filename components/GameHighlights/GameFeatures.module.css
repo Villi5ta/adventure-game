@@ -1,0 +1,53 @@
+.main {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.featureHeadline {
+  font-size: 30px;
+  padding-bottom: 2rem;
+  text-decoration: underline;
+}
+
+.featureCardWrapper {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1rem;
+}
+
+.featureCard {
+  background-color: black;
+  height: 250px;
+  aspect-ratio: 1 / 0.4;
+  color: white;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  padding: 1rem;
+}
+
+.featureTitle {
+  text-align: center;
+  border-bottom: 0.3rem solid white;
+  padding: 1rem;
+  margin: 1rem;
+  font-size: 25px;
+}
+
+.featureText {
+  font-size: 20px;
+  text-align: center;
+  letter-spacing: 0.1rem;
+  padding: 1rem;
+}
+
+.featureCardContent {
+  flex-grow: 1;
+}
+
+.swordImage {
+  align-self: center;
+  margin-top: auto;
+  width: 50px;
+}
